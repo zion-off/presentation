@@ -6,10 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <title>presentation</title>
 </head>
 
-<body>
+<body onload="positionElements()">
     <!-- HTML code -->
     <div id="draggable-element-1" class="draggable-element">
         Drag me!
@@ -20,6 +21,35 @@
 
     <!-- JavaScript code -->
     <script>
+
+        // collect all the divs
+        var divs = document.getElementsByTagName('div');
+        // get window width and height
+        var winWidth = window.innerWidth;
+        var winHeight = window.innerHeight;
+
+        // i stands for "index". you could also call this banana or haircut. it's a variable
+        for (var i = 0; i < divs.length; i++) {
+
+            // shortcut! the current div in the list
+            var thisDiv = divs[i];
+
+            // get random numbers for each element
+            randomTop = getRandomNumber(0, winHeight);
+            randomLeft = getRandomNumber(0, winWidth);
+
+            // update top and left position
+            thisDiv.style.top = randomTop + "px";
+            thisDiv.style.left = randomLeft + "px";
+
+        }
+
+        // function that returns a random number between a min and max
+        function getRandomNumber(min, max) {
+
+            return Math.random() * (max - min) + min;
+
+        }
         // Get all the draggable elements
         var draggableElements = document.querySelectorAll(".draggable-element");
 
