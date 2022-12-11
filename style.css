@@ -1,0 +1,15 @@
+@font-face {
+    font-family: Type;
+    src: url('sunflower.otf');
+}
+
+body {
+    background-image: url(orientalism.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.draggable-element {
+    position: absolute;
+    font-family: Type, sans-serif;
+}

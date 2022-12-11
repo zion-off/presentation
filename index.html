@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>presentation</title>
+</head>
+
+<body>
+    <!-- HTML code -->
+    <div id="draggable-element-1" class="draggable-element">
+        Drag me!
+    </div>
+    <div id="draggable-element-2" class="draggable-element">
+        Drag me too!
+    </div>
+
+    <!-- JavaScript code -->
+    <script>
+        // Get all the draggable elements
+        var draggableElements = document.querySelectorAll(".draggable-element");
+
+        // Add the event listeners for mousedown, mousemove, and mouseup
+        // to each draggable element
+        draggableElements.forEach(function (draggableElement) {
+            draggableElement.addEventListener("mousedown", onMouseDown);
+            document.addEventListener("mousemove", onMouseMove);
+            document.addEventListener("mouseup", onMouseUp);
+        });
+
+        // Variables for the current position and the element being dragged
+        var currentX;
+        var currentY;
+        var activeElement;
+
+        function onMouseDown(e) {
+            // Get the current position and the element being dragged
+            currentX = e.clientX;
+            currentY = e.clientY;
+            activeElement = this;
+        }
+
+        function onMouseMove(e) {
+            // If there is no active element, exit the function
+            if (!activeElement) return;
+
+            // Calculate the new position
+            var newX = currentX - e.clientX;
+            var newY = currentY - e.clientY;
+            currentX = e.clientX;
+            currentY = e.clientY;
+
+            // Set the new position
+            activeElement.style.top = (activeElement.offsetTop - newY) + "px";
+            activeElement.style.left = (activeElement.offsetLeft - newX) + "px";
+        }
+
+        function onMouseUp(e) {
+            // Set the active element to null
+            activeElement = null;
+        }
+    </script>
+
+</body>
+
+</html>
